@@ -6,7 +6,6 @@ export const fetchAllCollaborateurAsync = createAsyncThunk(
   async () => {
     try {
       const response = await fetchAll();
-      console.log("terminé !");
       return response.data;
     } catch (error) {
       let message = "";
@@ -44,16 +43,13 @@ export const collaborateurSlice = createSlice({
     builder
       .addCase(fetchAllCollaborateurAsync.pending, (state) => {
         state.status = "loading";
-        console.log("loading");
       })
       .addCase(fetchAllCollaborateurAsync.fulfilled, (state, action) => {
         state.status = "completed";
-        console.log("completed !");
         state.all = action.payload;
       })
       .addCase(fetchAllCollaborateurAsync.rejected, (state, action) => {
         state.status = "rejected";
-        console.log("failed !");
         state.errors = action.payload;
       });
   },
