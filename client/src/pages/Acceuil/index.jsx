@@ -1,27 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRandomCollaborateurAsync } from "../../features/collaborateurs/collaborateurAsyncAction";
 import {
-  fetchAllCollaborateurAsync,
-  getAllCollaborateurs,
   getError,
+  randomCollaborateurs,
+  errorsCollaborateurs,
 } from "../../features/collaborateurs/collaborateurSlice";
-import useFetchData from "../../hooks/useFetch";
-import useStorage from "../../hooks/useStorage";
-import { STORAGE_NAME } from "../../services/const";
 
 const Acceuil = () => {
   const dispatch = useDispatch();
-  const storage = useStorage(STORAGE_NAME);
+  const random = useSelector((state) => randomCollaborateurs(state));
+  const errors = useSelector((state) => errorsCollaborateurs(state));
 
   useEffect(() => {
-    dispatch(fetchAllCollaborateurAsync())
+    dispatch(fetchRandomCollaborateurAsync())
       .unwrap()
-      .catch((rejectedValueOrSerializedError) => {
-        dispatch(getError(rejectedValueOrSerializedError.message));
-      });
+      .catch((error) => dispatch(getError(error.message)));
   }, []);
 
-  return <div>Acceuil</div>;
+  return <div>Acceuil {random.firstname} </div>;
 };
 
 export default Acceuil;

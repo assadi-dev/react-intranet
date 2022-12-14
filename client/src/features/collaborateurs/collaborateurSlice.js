@@ -1,23 +1,10 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchAll } from "./fetchCollaborateur";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const fetchAllCollaborateurAsync = createAsyncThunk(
-  "collaborateurs/fetchAll",
-  async () => {
-    try {
-      const response = await fetchAll();
-      return response.data;
-    } catch (error) {
-      let message = "";
-      if (error.response) {
-        message = error.response.data.error;
-      } else {
-        message = error.message;
-      }
-      throw new Error(message);
-    }
-  }
-);
+import {
+  fetchAllCollaborateurAsync,
+  fetchOneCollaborateurAsync,
+  fetchRandomCollaborateurAsync,
+} from "./collaborateurAsyncAction";
 
 const initialState = {
   all: [],
@@ -51,10 +38,43 @@ export const collaborateurSlice = createSlice({
       .addCase(fetchAllCollaborateurAsync.rejected, (state, action) => {
         state.status = "rejected";
         state.errors = action.payload;
+      })
+      .addCase(fetchRandomCollaborateurAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchRandomCollaborateurAsync.fulfilled, (state, action) => {
+        state.status = "completed";
+        state.random = action.payload;
+      })
+      .addCase(fetchRandomCollaborateurAsync.rejected, (state, action) => {
+        state.status = "rejected";
+        state.errors = action.payload;
+      })
+      .addCase(fetchOneCollaborateurAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchOneCollaborateurAsync.fulfilled, (state, action) => {
+        state.status = "completed";
+        state.selected = action.payload;
+      })
+      .addCase(fetchOneCollaborateurAsync.rejected, (state, action) => {
+        state.status = "rejected";
+        state.errors = action.payload;
       });
   },
 });
 
 export const { getAllCollaborateurs, getError } = collaborateurSlice.actions;
+
+//Selecteur helpers
+/**
+ *
+ * Permet d'avoir acces au state qui contient tous les collaborateurs
+ * @returns un tableau d'objets qui qui contient la listes des collaborateurs
+ */
+export const allCollaborateurs = (state) => state.collaborateur.all;
+export const randomCollaborateurs = (state) => state.collaborateur.random;
+export const selectedCollaborateurs = (state) => state.collaborateur.selected;
+export const errorsCollaborateurs = (state) => state.collaborateur.errors;
 
 export default collaborateurSlice.reducer;

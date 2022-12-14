@@ -10,6 +10,7 @@ body {
     overflow-x: hidden;
     font-size: 16px;
     min-height: 100vh;
+ 
 }
 
 a {
@@ -42,3 +43,10 @@ button:active{
     opacity: 0.5;
 }
 
+.layoutContainer{
+  background-color: var(--bs-gray-200);
+  min-height: 100vh;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  position: relative !important;
+}

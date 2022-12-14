@@ -8,7 +8,7 @@ import NavbarCustom from "./NavbarCustom";
 
 const Layout = () => {
   return (
-    <Container fluid>
+    <Container fluid className="layoutContainer">
       <NavbarCustom />
 
       <Outlet />
