@@ -12,10 +12,8 @@ export const fetchAllCollaborateurAsync = createAsyncThunk(
       let message = "";
       if (error.response) {
         message = error.response.data.error;
-        console.log(message);
       } else {
         message = error.message;
-        console.log(message);
       }
       throw new Error(message);
     }
