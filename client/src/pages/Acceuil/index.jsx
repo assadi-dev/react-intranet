@@ -6,11 +6,21 @@ import {
   randomCollaborateurs,
   errorsCollaborateurs,
 } from "../../features/collaborateurs/collaborateurSlice";
+import {
+  AccueilCollab,
+  AccueilWrapper,
+  AlertZone,
+} from "../AjoutCollaborateur/Accueil.styled";
+import Alert from "../../components/Alert";
+import { isEmpty } from "../../services/utils";
 
 const Acceuil = () => {
   const dispatch = useDispatch();
   const random = useSelector((state) => randomCollaborateurs(state));
   const errors = useSelector((state) => errorsCollaborateurs(state));
+  const [state, setState] = useState({
+    isLoading: true,
+  });
 
   useEffect(() => {
     dispatch(fetchRandomCollaborateurAsync())
@@ -18,7 +28,18 @@ const Acceuil = () => {
       .catch((error) => dispatch(getError(error.message)));
   }, []);
 
-  return <div>Acceuil {random.firstname} </div>;
+  const stateError = isEmpty(errors) ? false : true;
+
+  return (
+    <AccueilWrapper>
+      <AlertZone>
+        {errors ? (
+          <Alert variant="danger" message={errors} showAlert={stateError} />
+        ) : null}
+      </AlertZone>
+      <AccueilCollab>Acceuil {random.firstname} </AccueilCollab>
+    </AccueilWrapper>
+  );
 };
 
 export default Acceuil;

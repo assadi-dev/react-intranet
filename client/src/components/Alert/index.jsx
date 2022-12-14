@@ -10,8 +10,8 @@ const AlertDismissible = ({ title, message, showAlert, variant }) => {
     <>
       {show ? (
         <Alert variant={variant} onClose={() => setShow(false)} dismissible>
-          <Alert.Heading>{title}</Alert.Heading>
-          <p>{message}</p>
+          {title && <Alert.Heading>{title}</Alert.Heading>}
+          <p style={{ marginBottom: "0" }}>{message}</p>
         </Alert>
       ) : null}
     </>

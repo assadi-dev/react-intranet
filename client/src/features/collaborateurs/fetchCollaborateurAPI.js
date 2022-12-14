@@ -5,7 +5,7 @@ const token = extractToken();
 
 const headers = {
   "Content-type": "application/json",
-  Authorization: `Bearer ${token}bn`,
+  Authorization: `Bearer ${token}`,
 };
 
 export function fetchAll() {
