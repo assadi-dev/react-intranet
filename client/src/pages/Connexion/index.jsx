@@ -59,7 +59,7 @@ const Connexion = () => {
         collaborateurs.data.user;
       storage.setItem({ token, id, isAdmin, firstname, lastname, photo });
 
-      sleep(2000).then(() => navigate("/", { replace: true }));
+      sleep(2000).then(() => window.location.replace("/"));
     }
   }, [collaborateurs.isReady]);
 
@@ -115,7 +115,6 @@ const Connexion = () => {
 
                   {collaborateurs.errors ? (
                     <AlertDismissible
-                      title={"Erreur connexion !"}
                       message={collaborateurs.errors.error}
                       showAlert={collaborateurs.errors ? true : false}
                       variant="danger"
@@ -125,7 +124,6 @@ const Connexion = () => {
                   {/* Message en cas de success */}
                   {collaborateurs.data ? (
                     <AlertDismissible
-                      title={"Connexion Reussi !"}
                       message={collaborateurs.data.success}
                       showAlert={collaborateurs.data ? true : false}
                       variant="success"
