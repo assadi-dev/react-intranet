@@ -7,6 +7,7 @@ import Connexion from "./pages/Connexion";
 import { STORAGE_NAME } from "./services/const";
 import useStorage from "./hooks/useStorage";
 import useFetchData from "./hooks/useFetch";
+import ListCollaborateurs from "./pages/ListCollaborateurs";
 
 function App() {
   const navigate = useNavigate();
@@ -25,6 +26,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Acceuil />} />
+          <Route
+            path="listes-collaborateurs"
+            element={<ListCollaborateurs />}
+          />
           {/* <Route index element={<Home />} />
           <Route path="recette/:id" element={<RecipesDetails />} />
           <Route path="recette/modifier/:id" element={<EditRecipe />} />
