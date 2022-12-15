@@ -24,9 +24,16 @@ export const AccueilCollab = styled.main`
   flex-direction: column;
 `;
 export const FooterSections = styled.div`
+  margin-top: 1rem;
   min-height: 50px;
   display: flex;
   justify-content: center;
   padding: 10px;
   width: 100%;
+  .responsive-btn {
+    font-size: 12px;
+    @media (min-width: 768px) {
+      font-size: initial;
+    }
+  }
 `;

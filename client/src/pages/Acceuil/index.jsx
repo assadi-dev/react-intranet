@@ -5,19 +5,24 @@ import {
   getError,
   randomCollaborateurs,
   errorsCollaborateurs,
+  statusCollaborateurs,
 } from "../../features/collaborateurs/collaborateurSlice";
 import {
   AccueilCollab,
   AccueilWrapper,
   AlertZone,
-} from "../AjoutCollaborateur/Accueil.styled";
+  FooterSections,
+} from "./Accueil.styled";
 import Alert from "../../components/Alert";
-import { isEmpty } from "../../services/utils";
+import { getAge, isEmpty } from "../../services/utils";
+import CollaborateursCard from "../../components/Cards/CollaborateursCard";
+import Button from "react-bootstrap/Button";
 
 const Acceuil = () => {
   const dispatch = useDispatch();
   const random = useSelector((state) => randomCollaborateurs(state));
   const errors = useSelector((state) => errorsCollaborateurs(state));
+  const statusState = useSelector((state) => statusCollaborateurs(state));
   const [state, setState] = useState({
     isLoading: true,
   });
@@ -29,6 +34,11 @@ const Acceuil = () => {
   }, []);
 
   const stateError = isEmpty(errors) ? false : true;
+  const LoadAnotherCollab = () => {
+    dispatch(fetchRandomCollaborateurAsync())
+      .unwrap()
+      .catch((error) => dispatch(getError(error.message)));
+  };
 
   return (
     <AccueilWrapper>
@@ -37,7 +47,26 @@ const Acceuil = () => {
           <Alert variant="danger" message={errors} showAlert={stateError} />
         ) : null}
       </AlertZone>
-      <AccueilCollab>Acceuil {random.firstname} </AccueilCollab>
+      <AccueilCollab>
+        {statusState == "completed" ? (
+          <CollaborateursCard
+            name={`${random.firstname} ${random.lastname}`}
+            age={getAge(random.birthdate)}
+            from={`${random.city}, ${random.country}`}
+            photo={`${random.photo}`}
+          />
+        ) : null}
+      </AccueilCollab>
+
+      <FooterSections>
+        <Button
+          className="responsive-btn"
+          variant="primary"
+          onClick={LoadAnotherCollab}
+        >
+          DIRE BONJOUR A QUELQU'UN D'AUTRE
+        </Button>
+      </FooterSections>
     </AccueilWrapper>
   );
 };

@@ -37,3 +37,19 @@ export const extractToken = () => {
     return null;
   }
 };
+
+export const getAge = (birthday) => {
+  const year = birthday.split("-")[0];
+  const month = birthday.split("-")[1];
+  const date = birthday.split("-")[2];
+
+  const birth = new Date(year, month, date).getFullYear();
+  const dateNow = new Date().getFullYear();
+  let result = Number(dateNow) - Number(birth);
+  return result;
+};
+
+export const dateTimeTotimstamp = (datetime) => {
+  const dt = new Date(datetime);
+  return dt.getTime();
+};
