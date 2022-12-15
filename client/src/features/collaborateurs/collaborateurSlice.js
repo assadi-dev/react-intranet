@@ -76,5 +76,6 @@ export const allCollaborateurs = (state) => state.collaborateur.all;
 export const randomCollaborateurs = (state) => state.collaborateur.random;
 export const selectedCollaborateurs = (state) => state.collaborateur.selected;
 export const errorsCollaborateurs = (state) => state.collaborateur.errors;
+export const statusCollaborateurs = (state) => state.collaborateur.status;
 
 export default collaborateurSlice.reducer;
