@@ -33,7 +33,13 @@ const NavbarCustom = () => {
   return (
     <>
       {["lg"].map((expand) => (
-        <Navbar key={expand} bg="light" expand={expand} className="mb-3">
+        <Navbar
+          key={expand}
+          bg="light"
+          expand={expand}
+          className="mb-3"
+          sticky="top"
+        >
           <Container>
             <Navbar.Brand as={Link} to="/">
               Navbar Offcanvas
