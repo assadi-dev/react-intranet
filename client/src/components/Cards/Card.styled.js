@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import userimg from "../../assets/img/user_default.jpg";
 import { isEmpty } from "../../services/utils";
+import AvatarCard from "./CollaborateursCard/AvatarCard";
 
 export const CardBodyContent = styled.div`
   display: flex;
@@ -123,5 +124,85 @@ export const MoreBtnWrapper = styled.span`
   svg {
     width: 25px;
     height: 25px;
+  }
+`;
+
+export const ListCardContainer = styled.div`
+  width: 100%;
+  height: 150px;
+  border: 1px solid var(--bs-gray-600);
+  border-radius: 8px;
+  background-color: #fff;
+  justify-self: center;
+  padding: 10px;
+  position: relative;
+  .avatarlistContainer {
+    width: 100%;
+    height: 45px;
+  }
+  .morebtn-listContainer {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    color: var(--bs-gray-600);
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+`;
+
+export const ListCardContainerBody = styled.div`
+  width: 100%;
+  position: relative;
+`;
+
+export const ListCardHeaderRow = styled.div`
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-gap: 1rem;
+  margin-bottom: 10px;
+  align-items: center;
+`;
+
+export const UsernameText = styled.div`
+  & p {
+    margin: 0 !important;
+    font-size: 10px;
+    width: 40%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    @media (min-width: 550px) {
+      width: 100%;
+    }
+  }
+
+  & .name {
+    font-weight: bold;
+    font-size: 14px;
+  }
+  & .age {
+    opacity: 0.6;
+  }
+`;
+
+export const RowInfoContacts = styled.div`
+  display: flex;
+
+  .icon {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+    p {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 `;

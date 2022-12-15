@@ -42,7 +42,7 @@ const NavbarCustom = () => {
         >
           <Container>
             <Navbar.Brand as={Link} to="/">
-              Navbar Offcanvas
+              REACT INTRANET
             </Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
