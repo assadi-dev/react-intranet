@@ -68,6 +68,14 @@ export const Username = styled.div`
   .age {
     opacity: 0.6;
     font-weight: initial;
+    margin-left: 2px;
+    font-size: 10px;
+    @media (min-width: 550px) {
+      font-size: 12px;
+    }
+    @media (min-width: 992px{
+      font-size: 14px;
+    })
   }
 `;
 
@@ -127,9 +135,11 @@ export const MoreBtnWrapper = styled.span`
   }
 `;
 
+//Style card pour la listes des colaborateurs
+
 export const ListCardContainer = styled.div`
   width: 100%;
-  height: 150px;
+  height: 180px;
   border: 1px solid var(--bs-gray-600);
   border-radius: 8px;
   background-color: #fff;
@@ -137,8 +147,11 @@ export const ListCardContainer = styled.div`
   padding: 10px;
   position: relative;
   .avatarlistContainer {
-    width: 100%;
+    width: 45px;
     height: 45px;
+    @media (min-width: 992px) {
+      width: 100%;
+    }
   }
   .morebtn-listContainer {
     width: 20px;
@@ -159,50 +172,94 @@ export const ListCardContainerBody = styled.div`
 
 export const ListCardHeaderRow = styled.div`
   display: grid;
-  grid-template-columns: 50px 1fr;
-  grid-gap: 1rem;
-  margin-bottom: 10px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px 1fr;
+  grid-gap: 0.2rem;
   align-items: center;
+  @media (min-width: 992px) {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    grid-gap: 1rem;
+  }
 `;
 
 export const UsernameText = styled.div`
+  margin-bottom: 8px;
   & p {
     margin: 0 !important;
     font-size: 10px;
-    width: 40%;
+    width: 135px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    @media (min-width: 550px) {
-      width: 100%;
+    @media (min-width: 480px) {
+      width: 145px;
+    }
+
+    @media (min-width: 992px) {
+      width: 180px;
     }
   }
 
   & .name {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 12px;
+    @media (min-width: 992px) {
+      font-size: 14px;
+    }
   }
   & .age {
     opacity: 0.6;
+    margin-left: 5px;
+    font-size: 10px;
+    @media (min-width: 992px) {
+      font-size: 12px;
+    }
   }
 `;
 
 export const RowInfoContacts = styled.div`
   display: flex;
+  flex-wrap: nowrap;
+  width: fit-content;
+  a {
+    text-decoration: none;
+    cursor: pointer !important;
+  }
+  .email {
+    color: var(--bs-primary) !important;
+  }
+  .phone {
+    color: var(--bs-teal) !important;
+  }
+  .birthdate {
+    color: var(--bs-warning) !important;
+    cursor: context-menu;
+  }
+
+  a,
+  p {
+    font-size: 12px;
+    margin-bottom: 5px;
+    width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    @media (min-width: 480px) {
+      width: 140px;
+    }
+    @media (min-width: 992px) {
+      width: 240px;
+    }
+  }
 
   .icon {
     width: 15px;
     height: 15px;
-    margin-right: 10px;
+    margin-right: 5px;
     svg {
       width: 15px;
       height: 15px;
-    }
-    p {
-      flex: 1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
   }
 `;

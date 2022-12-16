@@ -6,6 +6,7 @@ import {
   MoreIcon,
   PhoneIcone,
 } from "../../../assets/svg/global";
+import { getAge } from "../../../services/utils";
 import {
   CardBodyContent,
   FooterCard,
@@ -22,7 +23,7 @@ const CollaborateursCard = ({
   photo,
   email,
   phone,
-  birthday,
+  birthdate,
 }) => {
   return (
     <Card>
@@ -34,7 +35,10 @@ const CollaborateursCard = ({
           <AvatarCard img={photo} />
           <Username>
             <p className="name">
-              {name} {age && <span className="age">{`(${age} ans)`}</span>}
+              {name}{" "}
+              {birthdate && (
+                <span className="age">{` (${getAge(birthdate)} ans)`}</span>
+              )}
             </p>
 
             <p className="country">{from}</p>
