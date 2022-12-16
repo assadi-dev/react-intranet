@@ -14,6 +14,7 @@ import {
   statusCollaborateurs,
 } from "../../../features/collaborateurs/collaborateurSlice";
 import { getAge } from "../../../services/utils";
+import MoreOptionDropDown from "../../MoreOptionDropDown";
 import {
   AvatarContainer,
   ListCardContainer,
@@ -33,11 +34,27 @@ const ListCollaborateursCard = ({
   photo,
   service,
 }) => {
+  const [showOption, setShowOption] = useState(false);
+
+  const handleClickOption = () => {
+    setShowOption((prevState) => (prevState = !showOption));
+  };
+
   return (
     <ListCardContainer>
-      <MoreBtnWrapper className="morebtn-listContainer">
-        <SettingsIcon />
-      </MoreBtnWrapper>
+      <div className="pe-1">
+        <MoreBtnWrapper
+          className="morebtn-listContainer"
+          onClick={handleClickOption}
+        >
+          <SettingsIcon />
+        </MoreBtnWrapper>
+        <MoreOptionDropDown
+          show={showOption}
+          style={{ marginRight: "5px", marginTop: "5px" }}
+        />
+      </div>
+
       <ListCardContainerBody>
         <ListCardHeaderRow>
           <AvatarContainer

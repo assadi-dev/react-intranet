@@ -122,6 +122,7 @@ export const MoreBtnWrapper = styled.span`
   display: grid;
   place-items: center;
   cursor: pointer;
+  z-index: 15;
   :hover {
     opacity: 0.6;
   }
