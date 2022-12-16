@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { isEmpty } from "../../services/utils";
 import {
   fetchAll,
   fetchRandom,
@@ -66,7 +67,8 @@ export const fetchOneCollaborateurAsync = createAsyncThunk(
 
 export const fetchUpdateCollaborateurAsync = createAsyncThunk(
   "collaborateurs/fetchUpdate",
-  async () => {
+  async (payload) => {
+    const { id, data } = payload;
     try {
       const response = await fetchUpdate(id, data);
       return response.data;
@@ -87,6 +89,46 @@ export const fetchDeleteCollaborateurAsync = createAsyncThunk(
   async () => {
     try {
       const response = await fetchDelete(id);
+      return response.data;
+    } catch (error) {
+      let message = "";
+      if (error.response) {
+        message = error.response.data.error;
+      } else {
+        message = error.message;
+      }
+      throw new Error(message);
+    }
+  }
+);
+
+export const fetchFilterCollaborateurAsync = createAsyncThunk(
+  "collaborateurs/fetchFilterCollaborateurs",
+  async (data) => {
+    const { term, categorie, service } = data;
+
+    try {
+      const response = await fetchAll();
+
+      let sendata = { data: response.data, term, categorie, service };
+      return sendata;
+    } catch (error) {
+      let message = "";
+      if (error.response) {
+        message = error.response.data.error;
+      } else {
+        message = error.message;
+      }
+      throw new Error(message);
+    }
+  }
+);
+
+export const fetchAddCollaborateurAsync = createAsyncThunk(
+  "collaborateurs/fetchAddCollaborateurs",
+  async (data) => {
+    try {
+      const response = await fetchAdd(data);
       return response.data;
     } catch (error) {
       let message = "";
