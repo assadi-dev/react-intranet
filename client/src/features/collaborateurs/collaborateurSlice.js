@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { isEmpty } from "../../services/utils";
 
 import {
   fetchAllCollaborateurAsync,
+  fetchFilterCollaborateurAsync,
   fetchOneCollaborateurAsync,
   fetchRandomCollaborateurAsync,
 } from "./collaborateurAsyncAction";
@@ -11,6 +13,7 @@ const initialState = {
   random: [],
   selected: [],
   errors: [],
+  filterParam: { term: "", categorie: "nom", service: "" },
   status: "idle",
 };
 
@@ -58,6 +61,55 @@ export const collaborateurSlice = createSlice({
         state.selected = action.payload;
       })
       .addCase(fetchOneCollaborateurAsync.rejected, (state, action) => {
+        state.status = "rejected";
+        state.errors = action.payload;
+      })
+      .addCase(fetchFilterCollaborateurAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchFilterCollaborateurAsync.fulfilled, (state, action) => {
+        const { payload } = action;
+        let term = payload.term;
+        let categorie = payload.categorie;
+        let service = payload.service;
+        let filteredState = payload.data;
+
+        if (!isEmpty(term)) {
+          state.filterParam.term = term;
+        }
+        if (!isEmpty(categorie)) {
+          state.filterParam.categorie = categorie;
+        }
+
+        state.filterParam.service = service;
+
+        if (state.filterParam.categorie == "nom") {
+          filteredState = filteredState.filter(
+            (collaborateur) =>
+              collaborateur.firstname
+                .toLowerCase()
+                .includes(term.toLowerCase()) ||
+              collaborateur.lastname.toLowerCase().includes(term.toLowerCase())
+          );
+        }
+
+        if (state.filterParam.categorie == "localisation") {
+          filteredState = filteredState.filter((collaborateur) =>
+            collaborateur.city.toLowerCase().includes(term.toLowerCase())
+          );
+        }
+
+        if (state.filterParam.service) {
+          filteredState = filteredState.filter((collaborateur) =>
+            collaborateur.service
+              .toLowerCase()
+              .includes(state.filterParam.service.toLowerCase())
+          );
+        }
+        state.status = "completed";
+        state.all = filteredState;
+      })
+      .addCase(fetchFilterCollaborateurAsync.rejected, (state) => {
         state.status = "rejected";
         state.errors = action.payload;
       });
