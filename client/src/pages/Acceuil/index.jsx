@@ -51,7 +51,7 @@ const Acceuil = () => {
         {statusState == "completed" ? (
           <CollaborateursCard
             name={`${random.firstname} ${random.lastname}`}
-            age={getAge(random.birthdate)}
+            birthdate={random.birthdate}
             from={`${random.city}, ${random.country}`}
             photo={`${random.photo}`}
           />
