@@ -24,8 +24,10 @@ import {
   RowInfoContacts,
   UsernameText,
 } from "../Card.styled";
+import ConfirmDeleteModal from "./ConfirmDeleteModal";
 
 const ListCollaborateursCard = ({
+  id,
   name,
   from,
   email,
@@ -35,9 +37,15 @@ const ListCollaborateursCard = ({
   service,
 }) => {
   const [showOption, setShowOption] = useState(false);
+  const [modalConfirmShow, setModalConFirmShow] = React.useState(false);
 
   const handleClickOption = () => {
     setShowOption((prevState) => (prevState = !showOption));
+  };
+
+  const handleClickDelete = () => {
+    setShowOption((prevState) => (prevState = false));
+    setModalConFirmShow((prevState) => (prevState = !modalConfirmShow));
   };
 
   return (
@@ -52,6 +60,7 @@ const ListCollaborateursCard = ({
         <MoreOptionDropDown
           show={showOption}
           style={{ marginRight: "5px", marginTop: "5px" }}
+          openConfirm={handleClickDelete}
         />
       </div>
 
@@ -107,6 +116,13 @@ const ListCollaborateursCard = ({
           </p>
         </RowInfoContacts>
       </ListCardContainerBody>
+      {/*Affichage du modal de confirmation */}
+      <ConfirmDeleteModal
+        show={modalConfirmShow}
+        onHide={handleClickDelete}
+        textConfirm={"Voulez-vous suprimer l'utilisateur " + name + " ?"}
+        id={id}
+      />
     </ListCardContainer>
   );
 };

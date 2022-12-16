@@ -3,6 +3,7 @@ import { isEmpty } from "../../services/utils";
 
 import {
   fetchAllCollaborateurAsync,
+  fetchDeleteCollaborateurAsync,
   fetchFilterCollaborateurAsync,
   fetchOneCollaborateurAsync,
   fetchRandomCollaborateurAsync,
@@ -112,6 +113,16 @@ export const collaborateurSlice = createSlice({
       .addCase(fetchFilterCollaborateurAsync.rejected, (state) => {
         state.status = "rejected";
         state.errors = action.payload;
+      })
+      .addCase(fetchDeleteCollaborateurAsync.pending, (state) => {
+        // state.status = "loading";
+      })
+      .addCase(fetchDeleteCollaborateurAsync.fulfilled, (state, action) => {
+        const { payload } = action;
+        let id = payload.collaborateur.id;
+        let upDateList = state.all;
+        state.all = upDateList.filter((collab) => collab.id != id);
+        // state.status = "completed";
       });
   },
 });

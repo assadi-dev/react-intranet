@@ -73,9 +73,9 @@ export const Username = styled.div`
     @media (min-width: 550px) {
       font-size: 12px;
     }
-    @media (min-width: 992px{
+    @media (min-width: 992px) {
       font-size: 14px;
-    })
+    }
   }
 `;
 
@@ -262,5 +262,19 @@ export const RowInfoContacts = styled.div`
       width: 15px;
       height: 15px;
     }
+  }
+`;
+
+export const ModalConfirmHeader = styled.div`
+  padding: 18px;
+  .header-text {
+    margin-bottom: 1rem;
+    margin-bottom: 1rem;
+    p {
+      margin: 0;
+    }
+  }
+  .row-btn {
+    display: flex;
   }
 `;

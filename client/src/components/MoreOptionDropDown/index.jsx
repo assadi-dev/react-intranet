@@ -8,7 +8,7 @@ import {
   MenuDropDown,
 } from "./MoreOption.styled";
 
-const MoreOptionDropDown = ({ id, ...props }) => {
+const MoreOptionDropDown = ({ id, openConfirm, ...props }) => {
   return (
     <MenuDropDown {...props}>
       <DropDonwContent>
@@ -17,7 +17,7 @@ const MoreOptionDropDown = ({ id, ...props }) => {
             <PencilEditicon /> Modifier
           </EditButton>
         </Link>
-        <DeleteButton className="dropdown-button">
+        <DeleteButton className="dropdown-button" onClick={openConfirm}>
           <TrashIcon /> Supprimer
         </DeleteButton>
       </DropDonwContent>
