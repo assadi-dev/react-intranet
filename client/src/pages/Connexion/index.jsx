@@ -59,7 +59,7 @@ const Connexion = () => {
         collaborateurs.data.user;
       storage.setItem({ token, id, isAdmin, firstname, lastname, photo });
 
-      sleep(2000).then(() => window.location.replace("/"));
+      sleep(3000).then(() => window.location.replace("/"));
     }
   }, [collaborateurs.isReady]);
 
