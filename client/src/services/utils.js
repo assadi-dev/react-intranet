@@ -23,8 +23,6 @@ export const sleep = async (time) => {
  * Extraire le token depuis le localStorage
  */
 export const extractToken = () => {
-  let token = "";
-
   try {
     if (!window.localStorage.getItem(STORAGE_NAME)) {
       throw new Error("Token n'est pas present dans le local storage");
@@ -38,10 +36,35 @@ export const extractToken = () => {
   }
 };
 
-export const getAge = (birthday) => {
-  const year = birthday.split("-")[0];
-  const month = birthday.split("-")[1];
-  const date = birthday.split("-")[2];
+export const extractIduser = () => {
+  try {
+    if (!window.localStorage.getItem(STORAGE_NAME)) {
+      throw new Error("Token n'est pas present dans le local storage");
+    }
+
+    let item = JSON.parse(window.localStorage.getItem(STORAGE_NAME));
+    return item.id;
+  } catch (error) {
+    return null;
+  }
+};
+
+export const isAdmin = () => {
+  try {
+    if (!window.localStorage.getItem(STORAGE_NAME)) {
+      throw new Error("Token n'est pas present dans le local storage");
+    }
+    let item = JSON.parse(window.localStorage.getItem(STORAGE_NAME));
+    return item.isAdmin;
+  } catch (error) {
+    return null;
+  }
+};
+
+export const getAge = (birthdate) => {
+  const year = birthdate.split("-")[0];
+  const month = birthdate.split("-")[1];
+  const date = birthdate.split("-")[2];
 
   const birth = new Date(year, month, date).getFullYear();
   const dateNow = new Date().getFullYear();
