@@ -57,3 +57,22 @@ export const PreviewPhoto = styled.div`
     height: 240px;
   }
 `;
+
+//Atribution droit Admin section
+
+export const AdminSectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (min-width: 768px) {
+    align-items: flex-start;
+  }
+`;
+
+export const RowAdminButton = styled.div`
+  display: flex;
+  justify-content: center;
+  @media (min-width: 768px) {
+    justify-content: flex-start;
+  }
+`;

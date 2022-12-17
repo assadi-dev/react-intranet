@@ -79,8 +79,8 @@ const AjoutCollaborateur = () => {
       dispatch(fetchAddCollaborateurAsync(values))
         .unwrap()
         .then(() => {
+          console.log("Collaborateur Ajouté");
           formik.handleReset();
-          alert("Collaborateur Ajouté");
         })
         .catch((error) => {
           console.log(error);

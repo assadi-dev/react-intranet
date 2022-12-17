@@ -6,14 +6,18 @@ import Col from "react-bootstrap/Col";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import {
+  AdminSectionContainer,
   FormBody,
   PreviewPhoto,
+  RowAdminButton,
 } from "../AjoutCollaborateur/FormCollaborateur.styled";
 import {
   getError,
   selectedCollaborateurs,
 } from "../../features/collaborateurs/collaborateurSlice";
 import { fetchUpdateCollaborateurAsync } from "../../features/collaborateurs/collaborateurAsyncAction";
+import { isAdmin, isEmpty } from "../../services/utils";
+import { useLocation } from "react-router-dom";
 
 const FormUpdate = () => {
   const useSelected = useSelector((state) => selectedCollaborateurs(state));
@@ -32,6 +36,9 @@ const FormUpdate = () => {
   } = useSelected;
 
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
+
+  let isProfilePath = pathname.includes("profil");
 
   //Validation des donné avant le submit des données
 
@@ -126,7 +133,7 @@ const FormUpdate = () => {
       };
 
       //Dans le cas ou l'utilisateur n'a pas defini les droit admin j'envoie les donnéés sans l' inclure si la valeur est vide sinon je l'ajoute
-      if (values.isAdmin.length > 0) {
+      if (!isEmpty(values.isAdmin)) {
         dataToSend = { ...dataToSend, isAdmin: values.isAdmin };
       }
 
@@ -139,7 +146,7 @@ const FormUpdate = () => {
         .unwrap()
         .then(() => {
           formik.handleReset();
-          alert("le Collaborateur à été mise à jour");
+          console.log("le Collaborateur à été mise à jour");
         })
         .catch((error) => {
           console.log(error);
@@ -153,6 +160,17 @@ const FormUpdate = () => {
         });
     },
   });
+
+  const setAdmin = (type) => {
+    switch (type) {
+      case "yes":
+        formik.setFieldValue("isAdmin", true);
+        break;
+      case "no":
+        formik.setFieldValue("isAdmin", false);
+        break;
+    }
+  };
 
   return (
     <Form onSubmit={formik.handleSubmit} className="pb-3">
@@ -171,6 +189,28 @@ const FormUpdate = () => {
               value={formik.values.photo}
             />
           </Form.Group>
+          {isAdmin() && !isProfilePath && (
+            <AdminSectionContainer className="my-3">
+              <p>Attribuer les droit Admin:</p>
+              <RowAdminButton>
+                <Button
+                  type="button"
+                  className="me-3"
+                  variant={formik.values.isAdmin ? "info" : "primary"}
+                  onClick={() => setAdmin("yes")}
+                >
+                  Oui
+                </Button>{" "}
+                <Button
+                  type="button"
+                  variant={!formik.values.isAdmin ? "info" : "warning"}
+                  onClick={() => setAdmin("no")}
+                >
+                  Non
+                </Button>
+              </RowAdminButton>
+            </AdminSectionContainer>
+          )}
         </div>
 
         <div>
@@ -434,7 +474,7 @@ const FormUpdate = () => {
           </Form.Group>
           <div className="d-flex justify-content-center">
             <Button variant="primary" type="submit">
-              Mettre à jours
+              Modifier
             </Button>
           </div>
         </div>
