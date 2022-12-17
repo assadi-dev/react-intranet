@@ -90,7 +90,7 @@ const FormUpdate = () => {
       country,
       photo,
       service,
-      isAdmin: false,
+      isAdmin: "",
       password: "",
       confirm: "",
     },
@@ -108,10 +108,9 @@ const FormUpdate = () => {
         country,
         photo,
         service,
-        isAdmin,
       } = values;
 
-      //Dans le cas ou l'utilisateur n'a pas entrer de mot de passe j'envoie les donnéés sans les inclure
+      //Dans le cas ou l'utilisateur n'a pas entrer de mot de passe et les droit admin j'envoie les donnéés sans les inclure
 
       let dataToSend = {
         gender,
@@ -124,9 +123,14 @@ const FormUpdate = () => {
         country,
         photo,
         service,
-        isAdmin,
       };
 
+      //Dans le cas ou l'utilisateur n'a pas defini les droit admin j'envoie les donnéés sans l' inclure si la valeur est vide sinon je l'ajoute
+      if (values.isAdmin.length > 0) {
+        dataToSend = { ...dataToSend, isAdmin: values.isAdmin };
+      }
+
+      //Dans le cas ou l'utilisateur n'a pas defini un mot de passe j'envoie les donnéés sans l' inclure si la valeur est vide sinon je l'ajoute
       if (values.password.length > 0) {
         dataToSend = { ...dataToSend, password: values.password };
       }
