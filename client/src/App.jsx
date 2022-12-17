@@ -59,7 +59,7 @@ function App() {
           <Route
             path="modifier-collaborateurs/:id"
             element={
-              <AuthenticateRoutes>
+              <AuthenticateRoutes isAdminRequire={true}>
                 <ModifierCollaborateur />
               </AuthenticateRoutes>
             }
