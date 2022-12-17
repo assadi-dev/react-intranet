@@ -17,6 +17,7 @@ import Alert from "../../components/Alert";
 import { getAge, isEmpty } from "../../services/utils";
 import CollaborateursCard from "../../components/Cards/CollaborateursCard";
 import Button from "react-bootstrap/Button";
+import { Helmet } from "react-helmet";
 
 const Acceuil = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,10 @@ const Acceuil = () => {
 
   return (
     <AccueilWrapper>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Accueil - React-Intranet</title>
+      </Helmet>
       <AlertZone>
         {errors ? (
           <Alert variant="danger" message={errors} showAlert={stateError} />

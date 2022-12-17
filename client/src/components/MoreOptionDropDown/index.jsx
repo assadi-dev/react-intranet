@@ -12,7 +12,7 @@ const MoreOptionDropDown = ({ id, openConfirm, ...props }) => {
   return (
     <MenuDropDown {...props}>
       <DropDonwContent>
-        <Link to="modifier-collaborateur">
+        <Link to={`/modifier-collaborateurs/${id}`}>
           <EditButton className="dropdown-button mb-1">
             <PencilEditicon /> Modifier
           </EditButton>

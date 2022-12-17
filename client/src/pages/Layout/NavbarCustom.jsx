@@ -66,12 +66,12 @@ const NavbarCustom = () => {
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   {userData.isAdmin ? (
-                    <Nav.Link as={Link} to="/ajouter-utilsateur">
+                    <Nav.Link as={Link} to="/ajouter-collaborateurs">
                       Ajouter un collaborateur
                     </Nav.Link>
                   ) : null}
 
-                  <Nav.Link as={Link} to="listes-collaborateurs">
+                  <Nav.Link as={Link} to="/listes-collaborateurs">
                     Liste des collaborateurs
                   </Nav.Link>
 

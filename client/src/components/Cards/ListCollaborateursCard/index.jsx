@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { EmailEnveloppeIcon } from "../../../assets/svg/connexion";
 
 import {
@@ -50,6 +51,11 @@ const ListCollaborateursCard = ({
 
   return (
     <ListCardContainer>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Listes des collaborateurs - React-Intranet</title>
+      </Helmet>
+
       <div className="pe-1">
         <MoreBtnWrapper
           className="morebtn-listContainer"
@@ -58,6 +64,7 @@ const ListCollaborateursCard = ({
           <SettingsIcon />
         </MoreBtnWrapper>
         <MoreOptionDropDown
+          id={id}
           show={showOption}
           style={{ marginRight: "5px", marginTop: "5px" }}
           openConfirm={handleClickDelete}
