@@ -14,6 +14,7 @@ import { extractIduser } from "./services/utils";
 import AuthenticateRoutes from "./components/AuthenticateRoutes";
 import AjoutCollaborateur from "./pages/AjoutCollaborateur";
 import Profile from "./pages/Profile";
+import ModifierCollaborateur from "./pages/ModifierCollaborateur";
 
 function App() {
   const navigate = useNavigate();
@@ -30,21 +31,48 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route
-          path="/"
-          element={
-            <AuthenticateRoutes isAdminRequire={true}>
-              <Layout />
-            </AuthenticateRoutes>
-          }
-        >
-          <Route index element={<Acceuil />} />
+        <Route path="/" element={<Layout />}>
+          <Route
+            index
+            element={
+              <AuthenticateRoutes>
+                <Acceuil />
+              </AuthenticateRoutes>
+            }
+          />
           <Route
             path="listes-collaborateurs"
-            element={<ListCollaborateurs />}
+            element={
+              <AuthenticateRoutes>
+                <ListCollaborateurs />
+              </AuthenticateRoutes>
+            }
           />
-          <Route path="ajouter-utilsateur" element={<AjoutCollaborateur />} />
-          <Route path="profile" element={<Profile />} />
+          <Route
+            path="ajouter-collaborateurs"
+            element={
+              <AuthenticateRoutes isAdminRequire={true}>
+                <AjoutCollaborateur />
+              </AuthenticateRoutes>
+            }
+          />
+          <Route
+            path="modifier-collaborateurs/:id"
+            element={
+              <AuthenticateRoutes>
+                <ModifierCollaborateur />
+              </AuthenticateRoutes>
+            }
+          />
+
+          <Route
+            path="profile"
+            element={
+              <AuthenticateRoutes>
+                <Profile />
+              </AuthenticateRoutes>
+            }
+          />
         </Route>
 
         <Route path="connexion" element={<Connexion />} />
