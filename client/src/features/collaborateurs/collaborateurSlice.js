@@ -22,9 +22,6 @@ export const collaborateurSlice = createSlice({
   name: "collaborateurs",
   initialState,
   reducers: {
-    getAllCollaborateurs: (state, action) => {
-      state.all = action.payload;
-    },
     getError: (state, action) => {
       state.errors = action.payload;
     },
