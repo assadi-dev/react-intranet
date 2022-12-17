@@ -66,7 +66,7 @@ function App() {
           />
 
           <Route
-            path="profile"
+            path="profil"
             element={
               <AuthenticateRoutes>
                 <Profile />

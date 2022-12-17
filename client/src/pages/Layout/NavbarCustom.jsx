@@ -79,7 +79,7 @@ const NavbarCustom = () => {
                     title={`${userData.firstname} ${userData.lastname}`}
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
-                    <NavDropdown.Item as={Link} to="/profile">
+                    <NavDropdown.Item as={Link} to="/profil">
                       Mon Compte
                     </NavDropdown.Item>
                     <NavDropdown.Item onClick={handleLogout}>
