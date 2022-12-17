@@ -42,11 +42,6 @@ const Navbar = () => {
       }));
   }, [storage.data]);
 
-  useEffect(() => {
-    let linksNav = document.querySelectorAll(".nav-items-responsive");
-    linksNav;
-  }, []);
-
   const handleLogout = (e) => {
     e.preventDefault();
     storage.clear();
@@ -70,21 +65,27 @@ const Navbar = () => {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <MenuList>
-              <li>
-                <AvatarSideBar img={userData.photo}></AvatarSideBar>
+              <li onClick={toogleShowMenu}>
+                <Link to="/">
+                  {" "}
+                  <AvatarSideBar img={userData.photo}></AvatarSideBar>
+                </Link>
               </li>
 
               <li>
                 <AvatarDropDown img={userData.photo} onLogout={handleLogout} />
               </li>
 
-              <li className="nav-items-responsive">
+              <li className="nav-items-responsive" onClick={toogleShowMenu}>
                 <NavLink to="/ajouter-collaborateurs">Ajouter</NavLink>
               </li>
-              <li className="nav-items-responsive">
+              <li className="nav-items-responsive" onClick={toogleShowMenu}>
                 <NavLink to="/listes-collaborateurs">Listes</NavLink>
               </li>
-              <li className="nav-items-responsive showSideBar ">
+              <li
+                className="nav-items-responsive showSideBar "
+                onClick={toogleShowMenu}
+              >
                 <NavLink to="/profil">Mon Compte</NavLink>
               </li>
               <li

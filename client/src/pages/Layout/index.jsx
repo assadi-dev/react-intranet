@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Container from "react-bootstrap/Container";
-import NavbarCustom from "./NavbarCustom";
 import Navbar from "../../components/Navbar";
 
 const Layout = () => {
