@@ -14,7 +14,7 @@ import {
   errorsCollaborateurs,
   statusCollaborateurs,
 } from "../../../features/collaborateurs/collaborateurSlice";
-import { getAge } from "../../../services/utils";
+import { getAge, isAdmin } from "../../../services/utils";
 import MoreOptionDropDown from "../../MoreOptionDropDown";
 import {
   AvatarContainer,
@@ -56,20 +56,22 @@ const ListCollaborateursCard = ({
         <title>Listes des collaborateurs - React-Intranet</title>
       </Helmet>
 
-      <div className="pe-1">
-        <MoreBtnWrapper
-          className="morebtn-listContainer"
-          onClick={handleClickOption}
-        >
-          <SettingsIcon />
-        </MoreBtnWrapper>
-        <MoreOptionDropDown
-          id={id}
-          show={showOption}
-          style={{ marginRight: "5px", marginTop: "5px" }}
-          openConfirm={handleClickDelete}
-        />
-      </div>
+      {isAdmin() && (
+        <div className="pe-1">
+          <MoreBtnWrapper
+            className="morebtn-listContainer"
+            onClick={handleClickOption}
+          >
+            <SettingsIcon />
+          </MoreBtnWrapper>
+          <MoreOptionDropDown
+            id={id}
+            show={showOption}
+            style={{ marginRight: "5px", marginTop: "5px" }}
+            openConfirm={handleClickDelete}
+          />
+        </div>
+      )}
 
       <ListCardContainerBody>
         <ListCardHeaderRow>
