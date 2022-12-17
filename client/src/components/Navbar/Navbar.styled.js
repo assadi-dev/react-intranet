@@ -15,6 +15,9 @@ export const NavbarContainer = styled.div`
   top: 0;
   z-index: 50;
   padding: 12px 28px;
+  .logo-intranet {
+    font-weight: bold;
+  }
 `;
 
 export const Backdrop = styled.div`
@@ -84,6 +87,10 @@ export const MenuList = styled.ul`
 export const BrandItem = styled.div`
   width: fit-content;
   padding: 2px;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
 
 export const ToogleMenuBtn = styled.div`

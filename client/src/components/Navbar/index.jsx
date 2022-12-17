@@ -60,7 +60,9 @@ const Navbar = () => {
           <ToogleMenu />
         </ToogleMenuBtn>
         <BrandItem>
-          <Link to="/">REACT-INTRANET</Link>
+          <Link className="logo-intranet" to="/">
+            REACT-INTRANET
+          </Link>
         </BrandItem>
         <Offcanvas show={show} onHide={toogleShowMenu} responsive={"lg"}>
           <Offcanvas.Header closeButton>
