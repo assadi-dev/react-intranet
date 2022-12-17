@@ -11,6 +11,7 @@ import {
   CardBodyContent,
   FooterCard,
   MoreBtnWrapper,
+  ServiceTagRandom,
   Username,
 } from "../Card.styled";
 import AvatarCard from "./AvatarCard";
@@ -24,14 +25,21 @@ const CollaborateursCard = ({
   email,
   phone,
   birthdate,
+  service,
 }) => {
+  const ShowServiceTag = () => {
+    return (
+      <ServiceTagRandom className={service.toLowerCase()}>
+        {service}
+      </ServiceTagRandom>
+    );
+  };
+
   return (
     <Card>
       <Card.Body>
         <CardBodyContent>
-          <MoreBtnWrapper>
-            <MoreIcon />
-          </MoreBtnWrapper>
+          <ShowServiceTag />
           <AvatarCard img={photo} />
           <Username>
             <p className="name">

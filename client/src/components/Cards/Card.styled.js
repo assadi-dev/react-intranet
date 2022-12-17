@@ -8,13 +8,22 @@ export const CardBodyContent = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 5px 15px 15px;
-  width: 240px;
+  width: 250px;
   position: relative;
   @media (min-width: 550px) {
     width: 420px;
   }
   @media (min-width: 990px) {
     width: 550px;
+  }
+  .technique {
+    background-color: var(--bs-primary);
+  }
+  .client {
+    background-color: var(--bs-teal);
+  }
+  .marketing {
+    background-color: var(--bs-danger);
   }
 `;
 
@@ -140,13 +149,15 @@ export const MoreBtnWrapper = styled.span`
 
 export const ListCardContainer = styled.div`
   width: 100%;
-  height: 180px;
-  border: 1px solid var(--bs-gray-600);
+  height: 200px;
+  border: 1px solid var(--bs-gray-500);
   border-radius: 8px;
   background-color: #fff;
   justify-self: center;
   padding: 10px;
   position: relative;
+  overflow: hidden;
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.15);
   .avatarlistContainer {
     width: 45px;
     height: 45px;
@@ -163,6 +174,16 @@ export const ListCardContainer = styled.div`
       width: 20px;
       height: 20px;
     }
+  }
+
+  .technique {
+    background-color: var(--bs-primary);
+  }
+  .client {
+    background-color: var(--bs-teal);
+  }
+  .marketing {
+    background-color: var(--bs-danger);
   }
 `;
 
@@ -276,5 +297,41 @@ export const ModalConfirmHeader = styled.div`
   }
   .row-btn {
     display: flex;
+  }
+`;
+
+export const ServiceTag = styled.span`
+  padding: 2px 8px;
+  border-radius: 2px;
+  width: 100px;
+  font-size: 8px;
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  color: #fff;
+  bottom: 0;
+  background-color: var(--bs-gray-500);
+  @media (min-width: 992px) {
+    font-size: 12px;
+  }
+`;
+
+export const ServiceTagRandom = styled.span`
+  position: absolute;
+  padding: 2px 8px;
+  border-radius: 2px;
+  text-align: center;
+  width: 80px;
+  font-size: 8px;
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  color: #fff;
+  top: 0;
+  background-color: var(--bs-gray-500);
+  @media (min-width: 992px) {
+    padding: 8px 12px;
+    font-size: 14px;
+    width: 120px;
   }
 `;

@@ -59,6 +59,7 @@ const Acceuil = () => {
             birthdate={random.birthdate}
             from={`${random.city}, ${random.country}`}
             photo={`${random.photo}`}
+            service={`${random.service}`}
           />
         ) : null}
       </AccueilCollab>

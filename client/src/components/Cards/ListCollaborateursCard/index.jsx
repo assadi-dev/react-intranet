@@ -23,6 +23,7 @@ import {
   ListCardHeaderRow,
   MoreBtnWrapper,
   RowInfoContacts,
+  ServiceTag,
   UsernameText,
 } from "../Card.styled";
 import ConfirmDeleteModal from "./ConfirmDeleteModal";
@@ -47,6 +48,10 @@ const ListCollaborateursCard = ({
   const handleClickDelete = () => {
     setShowOption((prevState) => (prevState = false));
     setModalConFirmShow((prevState) => (prevState = !modalConfirmShow));
+  };
+
+  const ShowServiceTag = () => {
+    return <ServiceTag className={service.toLowerCase()}>{service}</ServiceTag>;
   };
 
   return (
@@ -127,6 +132,8 @@ const ListCollaborateursCard = ({
         textConfirm={"Voulez-vous suprimer l'utilisateur " + name + " ?"}
         id={id}
       />
+
+      <ShowServiceTag />
     </ListCardContainer>
   );
 };
