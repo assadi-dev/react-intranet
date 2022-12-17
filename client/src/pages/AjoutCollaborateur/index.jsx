@@ -18,8 +18,6 @@ import { Helmet } from "react-helmet";
 const AjoutCollaborateur = () => {
   const dispatch = useDispatch();
 
-  //Previsualisation de l'image à l'aut de l'url dans le champs photo
-
   //Validation des donné avant le submit des données
 
   const validate = (values) => {
@@ -111,6 +109,7 @@ const AjoutCollaborateur = () => {
         <Form onSubmit={formik.handleSubmit}>
           <FormBody>
             <div>
+              {/* Prévisualisation de l'image à l'aut de l'url dans le champs photo */}
               <PreviewPhoto
                 className="mb-3"
                 img={formik.values.photo}
