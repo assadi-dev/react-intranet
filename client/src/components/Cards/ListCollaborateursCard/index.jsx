@@ -51,11 +51,6 @@ const ListCollaborateursCard = ({
 
   return (
     <ListCardContainer>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Listes des collaborateurs - React-Intranet</title>
-      </Helmet>
-
       {isAdmin() && (
         <div className="pe-1">
           <MoreBtnWrapper
