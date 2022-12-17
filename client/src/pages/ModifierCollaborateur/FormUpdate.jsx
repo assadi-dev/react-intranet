@@ -155,7 +155,7 @@ const FormUpdate = () => {
   });
 
   return (
-    <Form onSubmit={formik.handleSubmit}>
+    <Form onSubmit={formik.handleSubmit} className="pb-3">
       <FormBody>
         <div>
           <PreviewPhoto
@@ -175,8 +175,14 @@ const FormUpdate = () => {
 
         <div>
           {/**Nom et Prénom section */}
-          <Row className="mb-3">
-            <Form.Group as={Col} controlId="formBasicLastname">
+          <Row>
+            <Form.Group
+              as={Col}
+              className="mb-3"
+              xs={12}
+              md={6}
+              controlId="formBasicLastname"
+            >
               <Form.Label>Nom</Form.Label>
               <Form.Control
                 type="text"
@@ -197,7 +203,13 @@ const FormUpdate = () => {
               )}
             </Form.Group>
 
-            <Form.Group as={Col} controlId="formBasicFirstname">
+            <Form.Group
+              as={Col}
+              className="mb-3"
+              xs={12}
+              md={6}
+              controlId="formBasicFirstname"
+            >
               <Form.Label>Prénom</Form.Label>
               <Form.Control
                 type="text"
@@ -219,8 +231,14 @@ const FormUpdate = () => {
             </Form.Group>
           </Row>
           {/** Civilité et Date de naissance */}
-          <Row className="mb-3">
-            <Form.Group as={Col} controlId="formBasicGender">
+          <Row>
+            <Form.Group
+              className="mb-3"
+              as={Col}
+              xs={12}
+              md={6}
+              controlId="formBasicGender"
+            >
               <Form.Label>Civilité</Form.Label>
               <Form.Select
                 name="gender"
@@ -232,7 +250,13 @@ const FormUpdate = () => {
               </Form.Select>
             </Form.Group>
 
-            <Form.Group as={Col} controlId="formBasicBithdate">
+            <Form.Group
+              className="mb-3"
+              as={Col}
+              xs={12}
+              md={6}
+              controlId="formBasicBithdate"
+            >
               <Form.Label>Date de naissance</Form.Label>
               <Form.Control
                 type="date"
@@ -255,8 +279,14 @@ const FormUpdate = () => {
           </Row>
 
           {/**ville et Pays */}
-          <Row className="mb-3">
-            <Form.Group as={Col} controlId="formBasicCity">
+          <Row>
+            <Form.Group
+              className="mb-3"
+              as={Col}
+              xs={12}
+              md={6}
+              controlId="formBasicCity"
+            >
               <Form.Label>Ville</Form.Label>
               <Form.Control
                 type="text"
@@ -277,7 +307,13 @@ const FormUpdate = () => {
               )}
             </Form.Group>
 
-            <Form.Group as={Col} controlId="formBasicCountry">
+            <Form.Group
+              className="mb-3"
+              as={Col}
+              xs={12}
+              md={6}
+              controlId="formBasicCountry"
+            >
               <Form.Label>Pays</Form.Label>
               <Form.Control
                 type="text"
@@ -332,7 +368,13 @@ const FormUpdate = () => {
           </Form.Group>
 
           <Row>
-            <Form.Group as={Col} className="mb-3" controlId="formBasicPassword">
+            <Form.Group
+              as={Col}
+              xs={12}
+              md={6}
+              className="mb-3"
+              controlId="formBasicPassword"
+            >
               <Form.Label>Mot de passe</Form.Label>
               <Form.Control
                 type="password"
@@ -349,7 +391,13 @@ const FormUpdate = () => {
                 <Form.Text>Doit contenir au moins 8 caractères</Form.Text>
               )}
             </Form.Group>
-            <Form.Group as={Col} className="mb-3" controlId="formBasicConfirm">
+            <Form.Group
+              as={Col}
+              xs={12}
+              md={6}
+              className="mb-3"
+              controlId="formBasicConfirm"
+            >
               <Form.Label>Confirmation</Form.Label>
               <Form.Control
                 type="password"

@@ -3,10 +3,11 @@ import userimg from "../../assets/img/user_default.jpg";
 import { isEmpty } from "../../services/utils";
 
 export const FormUserContainer = styled.div`
-  width: 100%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   padding-top: 2rem;
+  padding-bottom: 2rem;
   @media (min-width: 768px) {
     width: 90%;
   }
@@ -43,12 +44,16 @@ export const FormHeaderSection = styled.div`
 export const PreviewPhoto = styled.div`
   border-radius: 3px;
   border: solid 1px var(--bs-gray-500);
-  width: 80%;
-  height: 280px;
+  width: 180px;
+  height: 180px;
   background-image: ${({ img }) =>
     !isEmpty(img) ? `url(${img})` : `url(${userimg})`};
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   margin: 0 auto;
+  @media (min-width: 1200px) {
+    width: 240px;
+    height: 240px;
+  }
 `;

@@ -127,8 +127,14 @@ const AjoutCollaborateur = () => {
 
             <div>
               {/**Nom et Prénom section */}
-              <Row className="mb-3">
-                <Form.Group as={Col} controlId="formBasicLastname">
+              <Row>
+                <Form.Group
+                  as={Col}
+                  className="mb-3"
+                  xs={12}
+                  md={6}
+                  controlId="formBasicLastname"
+                >
                   <Form.Label>Nom</Form.Label>
                   <Form.Control
                     type="text"
@@ -149,7 +155,13 @@ const AjoutCollaborateur = () => {
                   )}
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formBasicFirstname">
+                <Form.Group
+                  as={Col}
+                  className="mb-3"
+                  xs={12}
+                  md={6}
+                  controlId="formBasicFirstname"
+                >
                   <Form.Label>Prénom</Form.Label>
                   <Form.Control
                     type="text"
@@ -171,8 +183,14 @@ const AjoutCollaborateur = () => {
                 </Form.Group>
               </Row>
               {/** Civilité et Date de naissance */}
-              <Row className="mb-3">
-                <Form.Group as={Col} controlId="formBasicGender">
+              <Row>
+                <Form.Group
+                  as={Col}
+                  className="mb-3"
+                  xs={12}
+                  md={6}
+                  controlId="formBasicGender"
+                >
                   <Form.Label>Civilité</Form.Label>
                   <Form.Select
                     name="gender"
@@ -184,7 +202,13 @@ const AjoutCollaborateur = () => {
                   </Form.Select>
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formBasicBithdate">
+                <Form.Group
+                  as={Col}
+                  className="mb-3"
+                  xs={12}
+                  md={6}
+                  controlId="formBasicBithdate"
+                >
                   <Form.Label>Date de naissance</Form.Label>
                   <Form.Control
                     type="date"
@@ -207,8 +231,14 @@ const AjoutCollaborateur = () => {
               </Row>
 
               {/**ville et Pays */}
-              <Row className="mb-3">
-                <Form.Group as={Col} controlId="formBasicCity">
+              <Row>
+                <Form.Group
+                  as={Col}
+                  className="mb-3"
+                  xs={12}
+                  md={6}
+                  controlId="formBasicCity"
+                >
                   <Form.Label>Ville</Form.Label>
                   <Form.Control
                     type="text"
@@ -229,7 +259,13 @@ const AjoutCollaborateur = () => {
                   )}
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formBasicCountry">
+                <Form.Group
+                  as={Col}
+                  className="mb-3"
+                  xs={12}
+                  md={6}
+                  controlId="formBasicCountry"
+                >
                   <Form.Label>Pays</Form.Label>
                   <Form.Control
                     type="text"
@@ -263,8 +299,14 @@ const AjoutCollaborateur = () => {
                   <option value="Technique">Technique</option>
                 </Form.Select>
               </Form.Group>
-              <Row className="mb-3">
-                <Form.Group as={Col} controlId="formBasicEmail">
+              <Row>
+                <Form.Group
+                  as={Col}
+                  className="mb-3"
+                  xs={12}
+                  md={6}
+                  controlId="formBasicEmail"
+                >
                   <Form.Label>Email</Form.Label>
                   <Form.Control
                     type="email"
@@ -284,7 +326,13 @@ const AjoutCollaborateur = () => {
                     </Form.Text>
                   )}
                 </Form.Group>
-                <Form.Group as={Col} controlId="formBasicPassword">
+                <Form.Group
+                  as={Col}
+                  className="mb-3"
+                  xs={12}
+                  md={6}
+                  controlId="formBasicPassword"
+                >
                   <Form.Label>Mot de passe</Form.Label>
                   <Form.Control
                     type="password"
