@@ -49,7 +49,7 @@ export const fetchRandomCollaborateurAsync = createAsyncThunk(
 
 export const fetchOneCollaborateurAsync = createAsyncThunk(
   "collaborateurs/fetchOne",
-  async () => {
+  async (id) => {
     try {
       const response = await fetchOne(id);
       return response.data;

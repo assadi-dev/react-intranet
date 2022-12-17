@@ -7,6 +7,7 @@ import {
   fetchFilterCollaborateurAsync,
   fetchOneCollaborateurAsync,
   fetchRandomCollaborateurAsync,
+  fetchUpdateCollaborateurAsync,
 } from "./collaborateurAsyncAction";
 
 const initialState = {
@@ -24,6 +25,10 @@ export const collaborateurSlice = createSlice({
   reducers: {
     getError: (state, action) => {
       state.errors = action.payload;
+    },
+    resetSelected: (state) => {
+      state.selected = [];
+      state.errors = "";
     },
   },
 
@@ -120,11 +125,15 @@ export const collaborateurSlice = createSlice({
         let upDateList = state.all;
         state.all = upDateList.filter((collab) => collab.id != id);
         // state.status = "completed";
+      })
+      .addCase(fetchUpdateCollaborateurAsync.fulfilled, (state, action) => {
+        const { payload } = action;
+        state.selected = payload.collaborateur;
       });
   },
 });
 
-export const { getAllCollaborateurs, getError } = collaborateurSlice.actions;
+export const { resetSelected, getError } = collaborateurSlice.actions;
 
 //Selecteur helpers
 /**
