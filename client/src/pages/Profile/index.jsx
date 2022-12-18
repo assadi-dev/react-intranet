@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import AlertDismissible from "../../components/Alert";
@@ -15,6 +15,7 @@ import {
 } from "../AjoutCollaborateur/FormCollaborateur.styled";
 import FormUpdate from "../ModifierCollaborateur/FormUpdate";
 import { motion } from "framer-motion";
+import SuccessAlertDismissible from "../../components/Alert/SuccessAlertDismissible";
 
 const Profile = () => {
   const dispatch = useDispatch();

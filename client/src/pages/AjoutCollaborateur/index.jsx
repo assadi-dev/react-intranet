@@ -16,12 +16,15 @@ import {
 } from "./FormCollaborateur.styled";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
-import AlertDismissible from "../../components/Alert";
+import SuccessAlertDismissible from "../../components/Alert/SuccessAlertDismissible";
 
 const AjoutCollaborateur = () => {
   const dispatch = useDispatch();
 
   const [success, setSuccess] = useState({ show: false, message: "" });
+  const toggleShowSuccessMessage = () => {
+    setSuccess((prevState) => ({ ...prevState, show: !prevState.show }));
+  };
 
   //Validation des donné avant le submit des données
 
@@ -84,7 +87,6 @@ const AjoutCollaborateur = () => {
       dispatch(fetchAddCollaborateurAsync(values))
         .unwrap()
         .then((res) => {
-          console.log("Collaborateur Ajouté");
           setSuccess((prevState) => ({
             ...prevState,
             show: true,
@@ -113,13 +115,12 @@ const AjoutCollaborateur = () => {
 
       <FormUserContainer>
         <SuccessMessage>
-          {success.show && (
-            <AlertDismissible
-              variant="success"
-              message={success.message}
-              showAlert={true}
-            />
-          )}
+          <SuccessAlertDismissible
+            variant="success"
+            message={success.message}
+            showAlert={success.show}
+            onHide={toggleShowSuccessMessage}
+          />
         </SuccessMessage>
         <FormHeaderSection className="mb-5">
           <h2>Ajouter un utilisateur</h2>
