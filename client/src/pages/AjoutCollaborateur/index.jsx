@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -12,12 +12,16 @@ import {
   FormHeaderSection,
   FormUserContainer,
   PreviewPhoto,
+  SuccessMessage,
 } from "./FormCollaborateur.styled";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
+import AlertDismissible from "../../components/Alert";
 
 const AjoutCollaborateur = () => {
   const dispatch = useDispatch();
+
+  const [success, setSuccess] = useState({ show: false, message: "" });
 
   //Validation des donné avant le submit des données
 
@@ -79,8 +83,13 @@ const AjoutCollaborateur = () => {
     onSubmit: (values) => {
       dispatch(fetchAddCollaborateurAsync(values))
         .unwrap()
-        .then(() => {
+        .then((res) => {
           console.log("Collaborateur Ajouté");
+          setSuccess((prevState) => ({
+            ...prevState,
+            show: true,
+            message: res.success,
+          }));
           formik.handleReset();
         })
         .catch((error) => {
@@ -103,6 +112,15 @@ const AjoutCollaborateur = () => {
       </Helmet>
 
       <FormUserContainer>
+        <SuccessMessage>
+          {success.show && (
+            <AlertDismissible
+              variant="success"
+              message={success.message}
+              showAlert={true}
+            />
+          )}
+        </SuccessMessage>
         <FormHeaderSection className="mb-5">
           <h2>Ajouter un utilisateur</h2>
         </FormHeaderSection>

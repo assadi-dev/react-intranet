@@ -76,3 +76,8 @@ export const RowAdminButton = styled.div`
     justify-content: flex-start;
   }
 `;
+
+export const SuccessMessage = styled.div`
+  min-height: 50px;
+  width: 100%;
+`;

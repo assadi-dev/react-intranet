@@ -86,7 +86,7 @@ export const fetchUpdateCollaborateurAsync = createAsyncThunk(
 
 export const fetchDeleteCollaborateurAsync = createAsyncThunk(
   "collaborateurs/fetchDelete",
-  async (id) => {
+  async (id, thunkApi) => {
     try {
       const response = await fetchDelete(id, thunkApi);
       return response.data;
