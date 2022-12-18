@@ -5,7 +5,6 @@ import { extractToken, isAdmin } from "../../services/utils";
 import useStorage from "../../hooks/useStorage";
 
 const AuthenticateRoutes = ({ isAdminRequire, children }) => {
-  const navigate = useNavigate();
   const token = extractToken();
 
   if (!token) {

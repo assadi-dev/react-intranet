@@ -61,6 +61,14 @@ const AnimationRoutes = () => {
         </Route>
 
         <Route path="connexion" element={<Connexion />} />
+        <Route
+          path="*"
+          element={
+            <AuthenticateRoutes>
+              <Acceuil />
+            </AuthenticateRoutes>
+          }
+        />
       </Routes>
     </AnimatePresence>
   );
