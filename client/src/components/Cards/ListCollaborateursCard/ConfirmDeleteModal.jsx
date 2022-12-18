@@ -59,7 +59,9 @@ const ConfirmDeleteModal = ({ id, onHide, textConfirm, photo, ...props }) => {
           <Button variant="danger" className="me-3" onClick={onHide}>
             Annuler
           </Button>{" "}
-          <Button onClick={handleDelete}>Confirmer</Button>
+          <Button onClick={handleDelete} variant="success">
+            Confirmer
+          </Button>
         </div>
       </Modal.Body>
     </Modal>
