@@ -14,6 +14,7 @@ import {
   FormUserContainer,
 } from "../AjoutCollaborateur/FormCollaborateur.styled";
 import FormUpdate from "../ModifierCollaborateur/FormUpdate";
+import { motion } from "framer-motion";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -51,7 +52,14 @@ const Profile = () => {
 
       <FormUserContainer>
         <FormHeaderSection className="mb-5">
-          <h2>Mon Profil</h2>
+          <motion.h2
+            initial={{ opacity: 0, x: -25 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.25 }}
+            exit={{ opacity: 0, x: -25 }}
+          >
+            Mon Profil
+          </motion.h2>
         </FormHeaderSection>
         {/* Formulaire de modification */}
 

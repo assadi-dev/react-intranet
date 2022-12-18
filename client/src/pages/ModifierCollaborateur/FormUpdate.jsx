@@ -178,7 +178,8 @@ const FormUpdate = () => {
       <motion.div
         initial={{ opacity: 0, x: -25 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.3 }}
+        transition={{ delay: 0.25, duration: 0.3 }}
+        exit={{ opacity: 0, x: -25 }}
       >
         <FormBody>
           <div>

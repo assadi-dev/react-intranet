@@ -102,16 +102,16 @@ const AjoutCollaborateur = () => {
         <title>Ajouter - React-Intranet</title>
       </Helmet>
 
-      <motion.div
-        initial={{ opacity: 0, x: -25 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -25 }}
-        transition={{ duration: 0.3 }}
-      >
-        <FormUserContainer>
-          <FormHeaderSection className="mb-5">
-            <h2>Ajouter un utilisateur</h2>
-          </FormHeaderSection>
+      <FormUserContainer>
+        <FormHeaderSection className="mb-5">
+          <h2>Ajouter un utilisateur</h2>
+        </FormHeaderSection>
+        <motion.div
+          initial={{ opacity: 0, x: -25 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -25 }}
+          transition={{ duration: 0.3 }}
+        >
           <Form onSubmit={formik.handleSubmit}>
             <FormBody>
               <div>
@@ -387,8 +387,8 @@ const AjoutCollaborateur = () => {
               </div>
             </FormBody>
           </Form>
-        </FormUserContainer>
-      </motion.div>
+        </motion.div>
+      </FormUserContainer>
     </>
   );
 };
