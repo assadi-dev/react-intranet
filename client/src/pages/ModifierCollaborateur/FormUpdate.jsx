@@ -18,6 +18,7 @@ import {
 import { fetchUpdateCollaborateurAsync } from "../../features/collaborateurs/collaborateurAsyncAction";
 import { isAdmin, isEmpty } from "../../services/utils";
 import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const FormUpdate = () => {
   const useSelected = useSelector((state) => selectedCollaborateurs(state));
@@ -174,141 +175,238 @@ const FormUpdate = () => {
 
   return (
     <Form onSubmit={formik.handleSubmit} className="pb-3">
-      <FormBody>
-        <div>
-          <PreviewPhoto
-            className="mb-3"
-            img={formik.values.photo}
-          ></PreviewPhoto>
-          <Form.Group className="mb-3" controlId="formBasicphoto">
-            <Form.Control
-              type="text"
-              placeholder="URL de la photo"
-              name="photo"
-              onChange={formik.handleChange}
-              value={formik.values.photo}
-            />
-          </Form.Group>
-          {isAdmin() && !isProfilePath && (
-            <AdminSectionContainer className="my-3">
-              <p>Attribuer les droit Admin:</p>
-              <RowAdminButton>
-                <Button
-                  type="button"
-                  className="me-3"
-                  variant={formik.values.isAdmin ? "info" : "primary"}
-                  onClick={() => setAdmin("yes")}
-                >
-                  Oui
-                </Button>{" "}
-                <Button
-                  type="button"
-                  variant={!formik.values.isAdmin ? "info" : "warning"}
-                  onClick={() => setAdmin("no")}
-                >
-                  Non
-                </Button>
-              </RowAdminButton>
-            </AdminSectionContainer>
-          )}
-        </div>
-
-        <div>
-          {/**Nom et Prénom section */}
-          <Row>
-            <Form.Group
-              as={Col}
+      <motion.div
+        initial={{ opacity: 0, x: -25 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <FormBody>
+          <div>
+            <PreviewPhoto
               className="mb-3"
-              xs={12}
-              md={6}
-              controlId="formBasicLastname"
-            >
-              <Form.Label>Nom</Form.Label>
+              img={formik.values.photo}
+            ></PreviewPhoto>
+            <Form.Group className="mb-3" controlId="formBasicphoto">
               <Form.Control
                 type="text"
-                placeholder="Nom"
-                name="lastname"
+                placeholder="URL de la photo"
+                name="photo"
                 onChange={formik.handleChange}
-                value={formik.values.lastname}
-                onBlur={formik.handleBlur}
+                value={formik.values.photo}
               />
-              {formik.touched.lastname && formik.errors.lastname ? (
-                <Form.Text style={{ color: "var(--bs-danger)" }}>
-                  {formik.errors.lastname}
-                </Form.Text>
-              ) : (
-                <Form.Text className="text-muted">
-                  *champs obligatoire
-                </Form.Text>
-              )}
             </Form.Group>
+            {isAdmin() && !isProfilePath && (
+              <AdminSectionContainer className="my-3">
+                <p>Attribuer les droit Admin:</p>
+                <RowAdminButton>
+                  <Button
+                    type="button"
+                    className="me-3"
+                    variant={formik.values.isAdmin ? "info" : "primary"}
+                    onClick={() => setAdmin("yes")}
+                  >
+                    Oui
+                  </Button>{" "}
+                  <Button
+                    type="button"
+                    variant={!formik.values.isAdmin ? "info" : "warning"}
+                    onClick={() => setAdmin("no")}
+                  >
+                    Non
+                  </Button>
+                </RowAdminButton>
+              </AdminSectionContainer>
+            )}
+          </div>
 
-            <Form.Group
-              as={Col}
-              className="mb-3"
-              xs={12}
-              md={6}
-              controlId="formBasicFirstname"
-            >
-              <Form.Label>Prénom</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Prénom"
-                name="firstname"
-                onChange={formik.handleChange}
-                value={formik.values.firstname}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.firstname && formik.errors.firstname ? (
-                <Form.Text style={{ color: "var(--bs-danger)" }}>
-                  {formik.errors.firstname}
-                </Form.Text>
-              ) : (
-                <Form.Text className="text-muted">
-                  *champs obligatoire
-                </Form.Text>
-              )}
-            </Form.Group>
-          </Row>
-          {/** Civilité et Date de naissance */}
-          <Row>
-            <Form.Group
-              className="mb-3"
-              as={Col}
-              xs={12}
-              md={6}
-              controlId="formBasicGender"
-            >
-              <Form.Label>Civilité</Form.Label>
-              <Form.Select
-                name="gender"
-                onChange={formik.handleChange}
-                value={formik.values.gender}
+          <div>
+            {/**Nom et Prénom section */}
+            <Row>
+              <Form.Group
+                as={Col}
+                className="mb-3"
+                xs={12}
+                md={6}
+                controlId="formBasicLastname"
               >
-                <option value="male">Homme</option>
-                <option value="female">Femme</option>
+                <Form.Label>Nom</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Nom"
+                  name="lastname"
+                  onChange={formik.handleChange}
+                  value={formik.values.lastname}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.touched.lastname && formik.errors.lastname ? (
+                  <Form.Text style={{ color: "var(--bs-danger)" }}>
+                    {formik.errors.lastname}
+                  </Form.Text>
+                ) : (
+                  <Form.Text className="text-muted">
+                    *champs obligatoire
+                  </Form.Text>
+                )}
+              </Form.Group>
+
+              <Form.Group
+                as={Col}
+                className="mb-3"
+                xs={12}
+                md={6}
+                controlId="formBasicFirstname"
+              >
+                <Form.Label>Prénom</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Prénom"
+                  name="firstname"
+                  onChange={formik.handleChange}
+                  value={formik.values.firstname}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.touched.firstname && formik.errors.firstname ? (
+                  <Form.Text style={{ color: "var(--bs-danger)" }}>
+                    {formik.errors.firstname}
+                  </Form.Text>
+                ) : (
+                  <Form.Text className="text-muted">
+                    *champs obligatoire
+                  </Form.Text>
+                )}
+              </Form.Group>
+            </Row>
+            {/** Civilité et Date de naissance */}
+            <Row>
+              <Form.Group
+                className="mb-3"
+                as={Col}
+                xs={12}
+                md={6}
+                controlId="formBasicGender"
+              >
+                <Form.Label>Civilité</Form.Label>
+                <Form.Select
+                  name="gender"
+                  onChange={formik.handleChange}
+                  value={formik.values.gender}
+                >
+                  <option value="male">Homme</option>
+                  <option value="female">Femme</option>
+                </Form.Select>
+              </Form.Group>
+
+              <Form.Group
+                className="mb-3"
+                as={Col}
+                xs={12}
+                md={6}
+                controlId="formBasicBithdate"
+              >
+                <Form.Label>Date de naissance</Form.Label>
+                <Form.Control
+                  type="date"
+                  placeholder="Prénom"
+                  name="birthdate"
+                  onChange={formik.handleChange}
+                  value={formik.values.birthdate}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.touched.birthdate && formik.errors.birthdate ? (
+                  <Form.Text style={{ color: "var(--bs-danger)" }}>
+                    {formik.errors.birthdate}
+                  </Form.Text>
+                ) : (
+                  <Form.Text className="text-muted">
+                    *champs obligatoire
+                  </Form.Text>
+                )}
+              </Form.Group>
+            </Row>
+
+            {/**ville et Pays */}
+            <Row>
+              <Form.Group
+                className="mb-3"
+                as={Col}
+                xs={12}
+                md={6}
+                controlId="formBasicCity"
+              >
+                <Form.Label>Ville</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Ville"
+                  name="city"
+                  onChange={formik.handleChange}
+                  value={formik.values.city}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.touched.city && formik.errors.city ? (
+                  <Form.Text style={{ color: "var(--bs-danger)" }}>
+                    {formik.errors.city}
+                  </Form.Text>
+                ) : (
+                  <Form.Text className="text-muted">
+                    *champs obligatoire
+                  </Form.Text>
+                )}
+              </Form.Group>
+
+              <Form.Group
+                className="mb-3"
+                as={Col}
+                xs={12}
+                md={6}
+                controlId="formBasicCountry"
+              >
+                <Form.Label>Pays</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Pays"
+                  name="country"
+                  onChange={formik.handleChange}
+                  value={formik.values.country}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.touched.country && formik.errors.country ? (
+                  <Form.Text style={{ color: "var(--bs-danger)" }}>
+                    {formik.errors.country}
+                  </Form.Text>
+                ) : (
+                  <Form.Text className="text-muted">
+                    *champs obligatoire
+                  </Form.Text>
+                )}
+              </Form.Group>
+            </Row>
+
+            <Form.Group className="mb-3" controlId="formBasicService">
+              <Form.Label>Catégorie</Form.Label>
+              <Form.Select
+                name="service"
+                onChange={formik.handleChange}
+                value={formik.values.service}
+              >
+                <option value="Client">Client</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Technique">Technique</option>
               </Form.Select>
             </Form.Group>
 
-            <Form.Group
-              className="mb-3"
-              as={Col}
-              xs={12}
-              md={6}
-              controlId="formBasicBithdate"
-            >
-              <Form.Label>Date de naissance</Form.Label>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email</Form.Label>
               <Form.Control
-                type="date"
-                placeholder="Prénom"
-                name="birthdate"
+                type="email"
+                placeholder="abcdef@abcdef.com"
+                name="email"
                 onChange={formik.handleChange}
-                value={formik.values.birthdate}
+                value={formik.values.email}
                 onBlur={formik.handleBlur}
               />
-              {formik.touched.birthdate && formik.errors.birthdate ? (
+              {formik.touched.email && formik.errors.email ? (
                 <Form.Text style={{ color: "var(--bs-danger)" }}>
-                  {formik.errors.birthdate}
+                  {formik.errors.email}
                 </Form.Text>
               ) : (
                 <Form.Text className="text-muted">
@@ -316,29 +414,67 @@ const FormUpdate = () => {
                 </Form.Text>
               )}
             </Form.Group>
-          </Row>
 
-          {/**ville et Pays */}
-          <Row>
-            <Form.Group
-              className="mb-3"
-              as={Col}
-              xs={12}
-              md={6}
-              controlId="formBasicCity"
-            >
-              <Form.Label>Ville</Form.Label>
+            <Row>
+              <Form.Group
+                as={Col}
+                xs={12}
+                md={6}
+                className="mb-3"
+                controlId="formBasicPassword"
+              >
+                <Form.Label>Mot de passe</Form.Label>
+                <Form.Control
+                  type="password"
+                  name="password"
+                  onChange={formik.handleChange}
+                  value={formik.values.password}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.touched.password && formik.errors.password ? (
+                  <Form.Text style={{ color: "var(--bs-danger)" }}>
+                    {formik.errors.password}
+                  </Form.Text>
+                ) : (
+                  <Form.Text>Doit contenir au moins 8 caractères</Form.Text>
+                )}
+              </Form.Group>
+              <Form.Group
+                as={Col}
+                xs={12}
+                md={6}
+                className="mb-3"
+                controlId="formBasicConfirm"
+              >
+                <Form.Label>Confirmation</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Confirmer le mot de passe"
+                  name="confirm"
+                  onChange={formik.handleChange}
+                  value={formik.values.confirm}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.touched.confirm && formik.errors.confirm ? (
+                  <Form.Text style={{ color: "var(--bs-danger)" }}>
+                    {formik.errors.confirm}
+                  </Form.Text>
+                ) : null}
+              </Form.Group>
+            </Row>
+            <Form.Group className="mb-3" controlId="formBasicPhone">
+              <Form.Label>Téléphone</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Ville"
-                name="city"
+                placeholder="07-89-01-23-45"
+                name="phone"
                 onChange={formik.handleChange}
-                value={formik.values.city}
+                value={formik.values.phone}
                 onBlur={formik.handleBlur}
               />
-              {formik.touched.city && formik.errors.city ? (
+              {formik.touched.phone && formik.errors.phone ? (
                 <Form.Text style={{ color: "var(--bs-danger)" }}>
-                  {formik.errors.city}
+                  {formik.errors.phone}
                 </Form.Text>
               ) : (
                 <Form.Text className="text-muted">
@@ -346,139 +482,14 @@ const FormUpdate = () => {
                 </Form.Text>
               )}
             </Form.Group>
-
-            <Form.Group
-              className="mb-3"
-              as={Col}
-              xs={12}
-              md={6}
-              controlId="formBasicCountry"
-            >
-              <Form.Label>Pays</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Pays"
-                name="country"
-                onChange={formik.handleChange}
-                value={formik.values.country}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.country && formik.errors.country ? (
-                <Form.Text style={{ color: "var(--bs-danger)" }}>
-                  {formik.errors.country}
-                </Form.Text>
-              ) : (
-                <Form.Text className="text-muted">
-                  *champs obligatoire
-                </Form.Text>
-              )}
-            </Form.Group>
-          </Row>
-
-          <Form.Group className="mb-3" controlId="formBasicService">
-            <Form.Label>Catégorie</Form.Label>
-            <Form.Select
-              name="service"
-              onChange={formik.handleChange}
-              value={formik.values.service}
-            >
-              <option value="Client">Client</option>
-              <option value="Marketing">Marketing</option>
-              <option value="Technique">Technique</option>
-            </Form.Select>
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="abcdef@abcdef.com"
-              name="email"
-              onChange={formik.handleChange}
-              value={formik.values.email}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.email && formik.errors.email ? (
-              <Form.Text style={{ color: "var(--bs-danger)" }}>
-                {formik.errors.email}
-              </Form.Text>
-            ) : (
-              <Form.Text className="text-muted">*champs obligatoire</Form.Text>
-            )}
-          </Form.Group>
-
-          <Row>
-            <Form.Group
-              as={Col}
-              xs={12}
-              md={6}
-              className="mb-3"
-              controlId="formBasicPassword"
-            >
-              <Form.Label>Mot de passe</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                onChange={formik.handleChange}
-                value={formik.values.password}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.password && formik.errors.password ? (
-                <Form.Text style={{ color: "var(--bs-danger)" }}>
-                  {formik.errors.password}
-                </Form.Text>
-              ) : (
-                <Form.Text>Doit contenir au moins 8 caractères</Form.Text>
-              )}
-            </Form.Group>
-            <Form.Group
-              as={Col}
-              xs={12}
-              md={6}
-              className="mb-3"
-              controlId="formBasicConfirm"
-            >
-              <Form.Label>Confirmation</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Confirmer le mot de passe"
-                name="confirm"
-                onChange={formik.handleChange}
-                value={formik.values.confirm}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.confirm && formik.errors.confirm ? (
-                <Form.Text style={{ color: "var(--bs-danger)" }}>
-                  {formik.errors.confirm}
-                </Form.Text>
-              ) : null}
-            </Form.Group>
-          </Row>
-          <Form.Group className="mb-3" controlId="formBasicPhone">
-            <Form.Label>Téléphone</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="07-89-01-23-45"
-              name="phone"
-              onChange={formik.handleChange}
-              value={formik.values.phone}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.phone && formik.errors.phone ? (
-              <Form.Text style={{ color: "var(--bs-danger)" }}>
-                {formik.errors.phone}
-              </Form.Text>
-            ) : (
-              <Form.Text className="text-muted">*champs obligatoire</Form.Text>
-            )}
-          </Form.Group>
-          <div className="d-flex justify-content-center">
-            <Button variant="primary" type="submit">
-              Modifier
-            </Button>
+            <div className="d-flex justify-content-center">
+              <Button variant="primary" type="submit">
+                Modifier
+              </Button>
+            </div>
           </div>
-        </div>
-      </FormBody>
+        </FormBody>
+      </motion.div>
     </Form>
   );
 };

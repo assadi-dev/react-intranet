@@ -18,6 +18,7 @@ import { getAge, isEmpty } from "../../services/utils";
 import CollaborateursCard from "../../components/Cards/CollaborateursCard";
 import Button from "react-bootstrap/Button";
 import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
 
 const Acceuil = () => {
   const dispatch = useDispatch();

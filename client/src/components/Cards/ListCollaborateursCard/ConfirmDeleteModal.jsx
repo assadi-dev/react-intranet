@@ -4,8 +4,9 @@ import Modal from "react-bootstrap/Modal";
 import AlertDismissible from "../../Alert";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDeleteCollaborateurAsync } from "../../../features/collaborateurs/collaborateurAsyncAction";
+import { AvatarContainer } from "../Card.styled";
 
-const ConfirmDeleteModal = ({ id, onHide, textConfirm, ...props }) => {
+const ConfirmDeleteModal = ({ id, onHide, textConfirm, photo, ...props }) => {
   const [showAlert, setShowAlert] = useState(false);
   const dispatch = useDispatch();
   const [ErrorAction, setErroAction] = useState("");
@@ -40,7 +41,10 @@ const ConfirmDeleteModal = ({ id, onHide, textConfirm, ...props }) => {
     >
       <Modal.Body>
         <div className="header-text">
-          <p>{textConfirm}</p>
+          <div className="d-flex justify-content-center">
+            <AvatarContainer img={photo} className="avatarlistContainer" />
+          </div>
+          <p className="text-center"> {textConfirm}</p>
         </div>
         <div className="my-2">
           {ErrorAction.length > 0 && (

@@ -27,6 +27,7 @@ import {
   UsernameText,
 } from "../Card.styled";
 import ConfirmDeleteModal from "./ConfirmDeleteModal";
+import { motion } from "framer-motion";
 
 const ListCollaborateursCard = ({
   id,
@@ -131,6 +132,7 @@ const ListCollaborateursCard = ({
         onHide={handleClickDelete}
         textConfirm={"Voulez-vous suprimer l'utilisateur " + name + " ?"}
         id={id}
+        photo={photo}
       />
 
       <ShowServiceTag />
