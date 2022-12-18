@@ -40,7 +40,7 @@ const SelectFilter = ({ setFilterPraram }) => {
         name="categorie"
         onChange={handleFilterService}
       >
-        <option value="">Aucun</option>
+        <option value="all">Aucun</option>
         {optionService.map((categorie, i) => (
           <option key={i} value={categorie.value}>
             {categorie.label}

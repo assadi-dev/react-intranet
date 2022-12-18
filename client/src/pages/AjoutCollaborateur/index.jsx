@@ -84,7 +84,6 @@ const AjoutCollaborateur = () => {
           formik.handleReset();
         })
         .catch((error) => {
-          console.log(error);
           let errormessage = "";
           if (error.response) {
             errormessage = error.response.data.errors;

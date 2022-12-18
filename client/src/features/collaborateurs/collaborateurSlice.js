@@ -15,7 +15,7 @@ const initialState = {
   random: [],
   selected: [],
   errors: [],
-  filterParam: { term: "", categorie: "nom", service: "" },
+  filterParam: { term: "", categorie: "nom", service: "all" },
   status: "idle",
 };
 
@@ -102,7 +102,7 @@ export const collaborateurSlice = createSlice({
           );
         }
 
-        if (state.filterParam.service) {
+        if (state.filterParam.service != "all") {
           filteredState = filteredState.filter((collaborateur) =>
             collaborateur.service
               .toLowerCase()
