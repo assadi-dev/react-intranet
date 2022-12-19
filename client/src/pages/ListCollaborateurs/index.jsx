@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ListCollaborateursCard from "../../components/Cards/ListCollaborateursCard";
 import { fetchAllCollaborateurAsync } from "../../features/collaborateurs/collaborateurAsyncAction";
@@ -8,6 +8,7 @@ import {
   errorsCollaborateurs,
   statusCollaborateurs,
 } from "../../features/collaborateurs/collaborateurSlice";
+import { sleep } from "../../services/utils";
 import FilterZone from "./FilterZone";
 import {
   ListCollaborateursCardContainer,
@@ -20,10 +21,15 @@ const ListCollaborateurs = () => {
   const error = useSelector((state) => errorsCollaborateurs(state));
   const getAllCollaborateurs = useSelector((state) => allCollaborateurs(state));
   const getStatus = useSelector((state) => statusCollaborateurs(state));
+  const [readyToshow, setReadyToshow] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAllCollaborateurAsync())
       .unwrap()
+      .then(() => {
+        if (getStatus == "completed")
+          sleep(3000).then(() => setReadyToshow(true));
+      })
       .catch((error) => dispatch(getError(error.message)));
   }, []);
 
@@ -65,11 +71,7 @@ const ListCollaborateurs = () => {
       <FilterZone />
 
       <RowlistCollabContainer>
-        {getStatus == "completed" ? (
-          <RenderList />
-        ) : (
-          <div>Chargement en cours</div>
-        )}
+        {readyToshow ? <RenderList /> : <div>Chargement en cours</div>}
       </RowlistCollabContainer>
     </ListCollaborateursCardContainer>
   );
