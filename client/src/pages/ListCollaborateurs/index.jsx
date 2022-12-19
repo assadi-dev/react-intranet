@@ -8,7 +8,7 @@ import {
   errorsCollaborateurs,
   statusCollaborateurs,
 } from "../../features/collaborateurs/collaborateurSlice";
-import { sleep } from "../../services/utils";
+import { isEmpty, sleep } from "../../services/utils";
 import FilterZone from "./FilterZone";
 import {
   ListCollaborateursCardContainer,
@@ -33,11 +33,12 @@ const ListCollaborateurs = () => {
       .catch((error) => dispatch(getError(error.message)));
   }, []);
 
+  /**Composant Qui consiste à Affiché la listes des composant  */
   const RenderList = () => {
     return (
       <>
         <AnimatePresence>
-          {getAllCollaborateurs ? (
+          {!isEmpty(getAllCollaborateurs) ? (
             getAllCollaborateurs.map((collaborateur, i) => (
               <motion.div
                 key={collaborateur.id}
