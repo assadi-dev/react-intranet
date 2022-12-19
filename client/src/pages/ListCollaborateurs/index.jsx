@@ -33,7 +33,7 @@ const ListCollaborateurs = () => {
       .catch((error) => dispatch(getError(error.message)));
   }, []);
 
-  /**Composant Qui consiste à Affiché la listes des composant  */
+  /**Composant Qui consiste à Affiché la listes des collaborateur si il n'est pas vide */
   const RenderList = () => {
     return (
       <>
