@@ -47,7 +47,6 @@ const ListCollaborateurs = () => {
                   email={collaborateur.email}
                   phone={collaborateur.phone}
                   birthdate={collaborateur.birthdate}
-                  age={`${32} ans`}
                   photo={collaborateur.photo}
                   service={collaborateur.service}
                 />
